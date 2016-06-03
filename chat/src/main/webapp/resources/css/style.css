@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+
+.hideme{
+	display: none;
+}
+.chat{
+	height: 600px
+}
+.user-bar{
+	min-height:600px;
+	max-height:600px;
+	display:block;
+	color:white !important;
+	border: 1px solid  #ccc;
+}
+.chat-box{
+	border:1px solid #ccc;
+}
+.messages{
+	height: 500px;
+	background-color: #ddd;
+}
+.msg-row,.msg-row div{
+	height: inherit;
+}
+.msg-box{
+	height:100px;
+	background-color:#ccc;
+}
+input#msg {
+    width: 100%;
+    height: inherit;
+    background: inherit;
+}
+.send-wrap{
+	height: inherit;
+    padding-top: 30px;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    cursor: pointer;
+}
+button.btn.btn-default {
+	padding-left:0px;
+    background: inherit;
+}
+button.btn.btn-default span{
+	font-size: 20px;
+}
