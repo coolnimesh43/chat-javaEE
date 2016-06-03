@@ -12,6 +12,7 @@
 	crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="resources/js/main.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -68,7 +69,7 @@
 								<input type="text" id="msg" name="msg">
 							</div>
 							<div class="col-md-1 send-wrap">
-								<button class="btn btn-default">
+								<button class="btn btn-default" id="btn-msg">
 									<span class="glyphicon glyphicon-send" aria-hidden="true">Send</span>
 								</button>
 							</div>

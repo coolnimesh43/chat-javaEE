@@ -23,10 +23,11 @@ import org.nimesh43.chat.pojo.Message;
 import org.nimesh43.chat.pojo.User;
 import org.nimesh43.chat.util.ChatMessageEncorder;
 import org.nimesh43.chat.util.JoinMessageEncorder;
+import org.nimesh43.chat.util.LeaveMessageEncorder;
 import org.nimesh43.chat.util.MessageDecorder;
 
-@ServerEndpoint(value = "/chat/{name}/{userName}", encoders = { JoinMessageEncorder.class, ChatMessageEncorder.class }, decoders = {
-    MessageDecorder.class })
+@ServerEndpoint(value = "/zoom/{name}/{userName}", encoders = { JoinMessageEncorder.class, ChatMessageEncorder.class,
+    LeaveMessageEncorder.class }, decoders = { MessageDecorder.class })
 public class ChatEndPoint {
 
     @Inject
@@ -37,6 +38,7 @@ public class ChatEndPoint {
     @OnOpen
     public void onOpen(
         Session session, EndpointConfig endpointConfig, @PathParam("name") String name, @PathParam("userName") String userName) {
+        logger.debug("Inside ChatEndPoint#onOpen method. name is: {} userName is: {}", name, userName);
         User user = new User(name, userName);
         session.getUserProperties().put(userName, user);
         sessions.put(userName, session);
@@ -46,12 +48,12 @@ public class ChatEndPoint {
     }
 
     @OnMessage
-    public void onMessage(Session session, Message message) {
+    public void onMessage(Session session, ChatMessage message) {
         logger.debug("Inside ChatEndPoint#onMessage method. Received Message : {}", message);
         if (message instanceof ChatMessage) {
-            User user = (User) session.getUserProperties().get(((ChatMessage) message).getUser().getUserName());
+            User user = (User) session.getUserProperties().get(message.getUser().getUserName());
             if (user != null) {
-                Session targetSession = sessions.get(((ChatMessage) message).getTarget().getUserName());
+                Session targetSession = sessions.get(message.getTarget().getUserName());
                 if (targetSession != null) {
                     try {
                         message.setType("chat");

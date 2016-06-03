@@ -16,6 +16,10 @@ public class ChatMessage extends Message {
     @NotNull
     private User user;
 
+    public ChatMessage() {
+        super();
+    }
+
     public ChatMessage(String message, User target, User user) {
         super();
         this.message = message;

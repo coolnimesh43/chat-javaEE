@@ -1,12 +1,14 @@
 
 package org.nimesh43.chat.producer;
 
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@Stateless
 public class LoggerProducer {
 
     @Produces

@@ -4,7 +4,7 @@ package org.nimesh43.chat.util;
 import java.io.IOException;
 
 import org.json.JSONObject;
-import org.nimesh43.chat.pojo.Message;
+import org.nimesh43.chat.pojo.ChatMessage;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -16,10 +16,10 @@ public class JsonUtil {
         return new JSONObject(object);
     }
 
-    public static Message decodeFromJson(String json)
+    public static ChatMessage decodeFromJson(String json)
         throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(json, Message.class);
+        return mapper.readValue(json, ChatMessage.class);
     }
 
     public static ObjectMapper getObjectMapper() {

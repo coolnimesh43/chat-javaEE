@@ -4,14 +4,14 @@ package org.nimesh43.chat.util;
 import java.io.IOException;
 
 import javax.inject.Inject;
-import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
 import org.apache.logging.log4j.Logger;
+import org.nimesh43.chat.pojo.ChatMessage;
 import org.nimesh43.chat.pojo.Message;
 
-public class MessageDecorder implements Decoder.Text<Message> {
+public class MessageDecorder implements Decoder.Text<ChatMessage> {
 
     @Inject
     private Logger logger;
@@ -25,16 +25,17 @@ public class MessageDecorder implements Decoder.Text<Message> {
     }
 
     @Override
-    public Message decode(String s)
-        throws DecodeException {
+    public ChatMessage decode(String s) {
+        logger.debug("String to be decoded is: {}", s);
         try {
-            Message message = JsonUtil.decodeFromJson(s);
+            ChatMessage message = JsonUtil.decodeFromJson(s);
             return message;
         }
         catch (IOException e) {
-            logger.error("Exception while decoding message. Exception is: {}", e);
+            logger.error("Exception while decoding message. String is: {} Exception is: {}", s, e);
             return null;
         }
+
     }
 
     @Override
